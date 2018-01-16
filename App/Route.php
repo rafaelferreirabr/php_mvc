@@ -5,7 +5,6 @@ use SON\Init\Bootstrap;
 
 Class Route extends Bootstrap
 {
-	
 
 	protected function initRoutes()
 	{
