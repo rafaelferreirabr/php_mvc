@@ -10,6 +10,7 @@ Class Route extends Bootstrap
 	{
 		$routes['home'] = array('route' =>'/','controller'=>'indexController','action'=>'index');
 		$routes['contact'] = array('route' =>'/contact','controller'=>'indexController','action'=>'contact');
+		$routes['store'] = array('route' =>'/store','controller'=>'indexController','action'=>'store');
 		$this->setRoutes($routes);
 	}
 

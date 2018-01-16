@@ -23,6 +23,16 @@ Class IndexController extends Action
 		$this->render("contact");
 
 	}
+	public function store()
+	{
+		$client = Container::getModel("Client");
+		$data['id'] = 5;
+		$data['name'] = "amarildo";
+		$data['email'] = "Amarildo@example.com";
+		$client->setAttributes($data);
+		$this->view->clients = $client->store($client);
+		return " Cliente gravado com sucesso!!";
+	}
 
 	
 }

@@ -3,7 +3,11 @@
 namespace App\Models;
 
 use SON\Model\Table;
+
 class Client extends Table
 {
 	protected $table = "clients";
+	protected $id;
+	protected $name;
+	protected $email;
 }
