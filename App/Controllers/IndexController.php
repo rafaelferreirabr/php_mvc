@@ -3,17 +3,16 @@
 namespace App\Controllers;
 
 use SON\Controller\Action;
-use App\Models\Client;
-use App\Conn;
+use SON\DI\Container;
 
 Class IndexController extends Action
 {
 	
 	public function index()
 	{
-		$db = Conn::getDb();
-		$client = new Client($db);
+		$client = Container::getModel("Client");
 		$this->view->clients = $client->fetchAll();
+
 		$this->render("index");
 	}
 
