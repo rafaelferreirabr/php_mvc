@@ -3,13 +3,17 @@
 namespace App\Controllers;
 
 use SON\Controller\Action;
+use App\Models\Client;
+use App\Conn;
 
 Class IndexController extends Action
 {
 	
 	public function index()
 	{
-		$this->view->cars = array("Mustang","Ferrari");
+		$db = Conn::getDb();
+		$client = new Client($db);
+		$this->view->clients = $client->fetchAll();
 		$this->render("index");
 	}
 

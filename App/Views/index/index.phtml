@@ -2,8 +2,10 @@ Route: / Controller: indexController Action: Index View: Index
 
 <br>
 
-<?php foreach ($this->view->cars as $car):?>
+<?php foreach ($this->view->clients as $client):?>
 
-	<p><?= $car ?></p>
+	<p><?= $client["name"] ?></p>
+	<p><?= $client["email"] ?></p>
+	<hr>
 
 <?php endforeach ?>
