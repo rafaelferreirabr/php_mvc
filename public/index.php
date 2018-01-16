@@ -2,4 +2,5 @@
 
 require_once "../vendor/autoload.php";
 
-echo "Hello World";
+$route = new \App\Route;
+echo $route->getUrl();
