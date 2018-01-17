@@ -27,16 +27,31 @@ abstract class Table
 		return $stmt->fetch(\PDO::FETCH_ASSOC);
 	}
 
-	public function store()
+	public function store($class)
 	{
-		/*falta incluir os atributos dinamicos*/
-		$query = "insert into $this->table (id,name,email) values (:id,:name,:email)";
+		$columns = array();
+		$values = array();
+
+		foreach ($class as $column => $value) {
+			if($column != "db" && $column != "table"){
+				$columns[] = $column;
+				$values[$column] = $value;
+			}
+		}
+		$columns_to_insert = implode(",",$columns);
+		$values_to_insert = ":".implode(",:",$columns);
+
+		$query = "insert into $this->table (
+			".$columns_to_insert."
+		) values (
+			".$values_to_insert."
+		)";
+
 		$stmt = $this->db->prepare($query);
-
-		$stmt->bindParam(":id",$this->id);
-		$stmt->bindParam(":name",$this->name);
-		$stmt->bindParam(":email",$this->email);
-
+		foreach ($values as $key => $value) {
+			$stmt->bindParam(":$key",$this->$key);
+		}
+			
 		$stmt->execute();
 
 	}

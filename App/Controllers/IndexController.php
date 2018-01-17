@@ -25,14 +25,18 @@ Class IndexController extends Action
 	}
 	public function store()
 	{
-		$client = Container::getModel("Client");
-		$data['id'] = 5;
-		$data['name'] = "amarildo";
-		$data['email'] = "Amarildo@example.com";
-		$client->setAttributes($data);
-		$this->view->clients = $client->store($client);
-		return " Cliente gravado com sucesso!!";
+		$product = Container::getModel("Product");
+		$data['name'] = "Mouse";
+		$data['price'] = 10;
+		$product->setAttributes($data);
+		$product->store($product);
 	}
+	public function products()
+	{
+		$product = Container::getModel("Product");
+		$this->view->products = $product->fetchAll();
 
+		$this->render("products");
+	}
 	
 }
